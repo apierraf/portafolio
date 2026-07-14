@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adrian Pierra Fuentes — Mobile Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14171c;
+    --surface:#1b1f27;
+    --surface-2:#20252f;
+    --line:#2a2f3a;
+    --text:#e9e6df;
+    --text-dim:#9aa0ac;
+    --teal:#5eead4;
+    --amber:#f2a65a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--teal); color:var(--ink);}
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,23,28,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{font-family:'Fraunces', serif; font-size:1.15rem; font-weight:600; letter-spacing:0.01em;}
+  .logo span{color:var(--teal);}
+  .navlinks{display:flex; gap:36px; font-size:0.92rem; color:var(--text-dim);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--text);}
+  @media (max-width:700px){ .navlinks{display:none;} }
+
+  .hero{padding:88px 0 60px; position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.8rem; color:var(--teal); letter-spacing:0.08em;
+    text-transform:uppercase; margin-bottom:22px; display:block;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2.4rem, 5vw, 4.1rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    max-width:820px;
+  }
+  h1 em{font-style:italic; font-weight:500; color:var(--amber);}
+  .hero-sub{
+    margin-top:24px; font-size:1.15rem; color:var(--text-dim);
+    max-width:600px;
+  }
+  .hero-cta{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:2px; font-size:0.92rem; font-weight:500;
+    transition:transform .15s, background .2s;
+  }
+  .btn-primary{background:var(--teal); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:1px solid var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-dim); transform:translateY(-2px);}
+
+  .strata{margin-top:72px; border:1px solid var(--line); background:var(--surface); padding:28px 28px 22px;}
+  .strata-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--text-dim);
+    margin-bottom:18px; text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .layers{display:flex; flex-direction:column; gap:3px;}
+  .layer{display:flex; align-items:center; gap:16px; height:38px; position:relative;}
+  .layer-bar{height:100%; border-radius:1px; flex-shrink:0; opacity:0.9;}
+  .layer-label{font-size:0.86rem; white-space:nowrap; display:flex; gap:10px; align-items:baseline;}
+  .layer-years{font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--text-dim);}
+  .l1 .layer-bar{width:100%; background:var(--teal);}
+  .l2 .layer-bar{width:50%; background:var(--amber);}
+  .l3 .layer-bar{width:38%; background:#7c8591;}
+
+  section{padding:96px 0;}
+  .section-head{margin-bottom:52px;}
+  .num-tag{font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--amber); letter-spacing:0.06em; text-transform:uppercase;}
+  h2{font-family:'Fraunces', serif; font-weight:600; font-size:clamp(1.9rem, 3vw, 2.6rem); margin-top:12px;}
+  .divider{border:none; border-top:1px solid var(--line);}
+
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:64px;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr; gap:36px;} }
+  .about-grid p{color:var(--text-dim); font-size:1.02rem; margin-bottom:16px;}
+  .about-grid p strong{color:var(--text); font-weight:500;}
+  .stat-list{display:flex; flex-direction:column; gap:0;}
+  .stat-row{display:flex; justify-content:space-between; align-items:baseline; padding:18px 0; border-bottom:1px solid var(--line);}
+  .stat-row:first-child{border-top:1px solid var(--line);}
+  .stat-num{font-family:'Fraunces', serif; font-size:1.6rem; color:var(--teal);}
+  .stat-name{font-size:0.86rem; color:var(--text-dim);}
+
+  .tabs{display:flex; gap:8px; margin-bottom:36px; flex-wrap:wrap;}
+  .tab{
+    font-family:'JetBrains Mono', monospace; font-size:0.8rem;
+    padding:10px 18px; border:1px solid var(--line); color:var(--text-dim);
+    cursor:pointer; background:transparent; transition:all .2s;
+  }
+  .tab.active{border-color:var(--teal); color:var(--teal); background:rgba(94,234,212,0.06);}
+  .tab-panel{display:none; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:14px;}
+  .tab-panel.active{display:grid;}
+  .chip{border:1px solid var(--line); padding:16px 18px; font-size:0.9rem; display:flex; flex-direction:column; gap:6px; background:var(--surface);}
+  .chip-years{font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--amber);}
+
+  .timeline{display:flex; flex-direction:column;}
+  .tl-item{display:grid; grid-template-columns:150px 1fr; gap:32px; padding:28px 0; border-bottom:1px solid var(--line);}
+  .tl-item:first-child{border-top:1px solid var(--line);}
+  @media (max-width:640px){ .tl-item{grid-template-columns:1fr; gap:8px;} }
+  .tl-date{font-family:'JetBrains Mono', monospace; font-size:0.8rem; color:var(--text-dim);}
+  .tl-role{font-size:1.05rem; font-weight:500; margin-bottom:4px;}
+  .tl-company{color:var(--amber); font-size:0.9rem; margin-bottom:10px;}
+  .tl-desc{color:var(--text-dim); font-size:0.92rem; max-width:640px; margin-bottom:6px;}
+  .tl-list{list-style:none; display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .tl-list li{
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem; color:var(--text-dim);
+    border:1px solid var(--line); padding:4px 9px;
+  }
+
+  .proj-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:24px;}
+  .proj-card{
+    border:1px solid var(--line); background:var(--surface);
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:border-color .2s, transform .2s;
+  }
+  .proj-card:hover{border-color:var(--text-dim); transform:translateY(-3px);}
+  .proj-img-wrap{width:100%; aspect-ratio:526/296; overflow:hidden; background:var(--surface-2); border-bottom:1px solid var(--line);}
+  .proj-img-wrap img{width:100%; height:100%; object-fit:cover; display:block;}
+  .proj-body{padding:24px; display:flex; flex-direction:column; gap:12px; flex-grow:1;}
+  .proj-plat{font-family:'JetBrains Mono', monospace; font-size:0.7rem; color:var(--teal); text-transform:uppercase; letter-spacing:0.06em;}
+  .proj-title{font-family:'Fraunces', serif; font-size:1.3rem; font-weight:600;}
+  .proj-desc{color:var(--text-dim); font-size:0.9rem; flex-grow:1;}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .proj-tag{font-family:'JetBrains Mono', monospace; font-size:0.68rem; color:var(--text-dim); border:1px solid var(--line); padding:4px 9px;}
+  .proj-link{font-size:0.85rem; color:var(--amber);}
+
+  .contact{text-align:left;}
+  .contact-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px;}
+  .contact-big{font-family:'Fraunces', serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:600; max-width:600px;}
+  .contact-big em{font-style:italic; color:var(--teal);}
+  .contact-links{display:flex; flex-direction:column; gap:10px; font-family:'JetBrains Mono', monospace; font-size:0.92rem;}
+  .contact-links a{color:var(--text-dim); transition:color .2s;}
+  .contact-links a:hover{color:var(--teal);}
+
+  footer{border-top:1px solid var(--line); padding:32px 0; text-align:center; font-size:0.8rem; color:var(--text-dim);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">APF<span>.</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <span class="eyebrow">Mobile Engineer · Android · Swift · Flutter</span>
+    <h1>Adrian Pierra Fuentes builds <em>native-grade</em> mobile products, end to end.</h1>
+    <p class="hero-sub">Over a decade shipping Android and iOS apps — from national news readers to
+    government and travel platforms — plus 5 years in Flutter and a full-stack web background across
+    React, Vue, Angular and Node.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View projects →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+
+    <div class="strata">
+      <div class="strata-head"><span>Experience, by layer</span><span>2013 — present</span></div>
+      <div class="layers">
+        <div class="layer l1">
+          <div class="layer-bar"></div>
+          <div class="layer-label">Android / Swift (native) <span class="layer-years">10+ yrs</span></div>
+        </div>
+        <div class="layer l2">
+          <div class="layer-bar"></div>
+          <div class="layer-label">Flutter (cross-platform) <span class="layer-years">5 yrs</span></div>
+        </div>
+        <div class="layer l3">
+          <div class="layer-bar"></div>
+          <div class="layer-label">Web (React / Vue / Angular / Node) <span class="layer-years">supporting</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <span class="num-tag">01 / About</span>
+      <h2>From a Cuban university classroom to shipping national apps.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Adrian's path into mobile started as a <strong>professor of Programming and Databases</strong>
+        at Universidad Minero Metalúrgica de Moa, where he also tutored a thesis on a mobile app for
+        herbarium data collection — the first sign of where his career was headed.</p>
+        <p>He then spent close to a decade as a <strong>technical lead and project manager</strong> on
+        national-scale mobile projects in Cuba — at CITMATEL and later leading the ENTUMOVIL mobile
+        development area at DESOFT — shipping apps used by government institutions, national media, and
+        millions of everyday users.</p>
+        <p>More recently he's worked with teams in the <strong>US and Canada</strong> on Flutter products,
+        and stays active as a <strong>full-stack web developer</strong> across React, Vue, Angular and Node.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span class="stat-num">10+</span><span class="stat-name">years in Android &amp; Swift</span></div>
+        <div class="stat-row"><span class="stat-num">5</span><span class="stat-name">years in Flutter</span></div>
+        <div class="stat-row"><span class="stat-num">15+</span><span class="stat-name">mobile apps shipped &amp; published</span></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="stack" class="wrap">
+    <div class="section-head">
+      <span class="num-tag">02 / Stack</span>
+      <h2>Three platforms, one engineer.</h2>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="native">Native Mobile</button>
+      <button class="tab" data-tab="cross">Cross-platform</button>
+      <button class="tab" data-tab="web">Web</button>
+    </div>
+    <div class="tab-panel active" id="native">
+      <div class="chip"><span>Android Development</span><span class="chip-years">Kotlin · Java</span></div>
+      <div class="chip"><span>iOS Development</span><span class="chip-years">Swift</span></div>
+      <div class="chip"><span>SwiftUI</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Xcode</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Mobile UI/UX Design</span><span class="chip-years"></span></div>
+      <div class="chip"><span>UI/UX Prototyping</span><span class="chip-years"></span></div>
+    </div>
+    <div class="tab-panel" id="cross">
+      <div class="chip"><span>Flutter</span><span class="chip-years">5 years</span></div>
+      <div class="chip"><span>Dart</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Firebase</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Project Management</span><span class="chip-years"></span></div>
+    </div>
+    <div class="tab-panel" id="web">
+      <div class="chip"><span>React</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Vue.js</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Angular</span><span class="chip-years"></span></div>
+      <div class="chip"><span>JavaScript</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Node.js</span><span class="chip-years"></span></div>
+      <div class="chip"><span>Git</span><span class="chip-years"></span></div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <span class="num-tag">03 / Experience</span>
+      <h2>Where the work happened.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date mono">SEP 2021 — FEB 2023</div>
+        <div>
+          <div class="tl-role">Mobile Developer <span style="color:var(--text-dim); font-weight:400;">(part-time)</span></div>
+          <div class="tl-company">IsuCorp — Toronto, Canada</div>
+          <div class="tl-desc">Built Flutter apps for North American clients.</div>
+          <ul class="tl-list"><li>Flourish 360</li><li>Love Coin</li></ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date mono">APR 2021 — AUG 2021</div>
+        <div>
+          <div class="tl-role">Mobile Developer <span style="color:var(--text-dim); font-weight:400;">(part-time)</span></div>
+          <div class="tl-company">ItsTECH — Houston, United States</div>
+          <div class="tl-desc">Built the TruckBook app for logistics data analysis on truck and trailer trips.</div>
+          <ul class="tl-list"><li>TruckBook</li></ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date mono">FEB 2019 — MAR 2021</div>
+        <div>
+          <div class="tl-role">Mobile Developer</div>
+          <div class="tl-company">DESOFT — La Habana, Cuba</div>
+          <div class="tl-desc">Led the ENTUMOVIL mobile application development area as technical lead and project manager, delivering apps for national media, government, and public services.</div>
+          <ul class="tl-list">
+            <li>Cartelera de la TV Cubana</li>
+            <li>Cubadebate</li>
+            <li>Portal del Ciudadano</li>
+            <li>Empresa de Reciclaje de Cuba</li>
+            <li>Antex</li>
+            <li>ENTUMOVIL SMS</li>
+            <li>Gobierno de La Habana</li>
+            <li>Gobierno de Pinar del Río</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date mono">MAR 2015 — JAN 2019</div>
+        <div>
+          <div class="tl-role">Mobile Developer</div>
+          <div class="tl-company">CITMATEL — La Habana, Cuba</div>
+          <div class="tl-desc">Technical leader and project manager across a slate of national mobile products.</div>
+          <ul class="tl-list">
+            <li>Musicalia</li>
+            <li>Librería Virtual</li>
+            <li>Sonando en Cuba</li>
+            <li>Ancestros de Cuba</li>
+            <li>Tienda Virtual Bazar Cubano</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date mono">SEP 2013 — JAN 2015</div>
+        <div>
+          <div class="tl-role">Professor</div>
+          <div class="tl-company">Universidad Minero Metalúrgica de Moa — Holguín, Cuba</div>
+          <div class="tl-desc">Taught Programming and Database courses; tutored a degree thesis building a mobile app for herbarium data collection.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <span class="num-tag">04 / Projects</span>
+      <h2>Selected work.</h2>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://play-lh.googleusercontent.com/BMSkWVwo1-xPyKiJn0uSCJnaaEPBnbSsER0Q515SlXa7QVNjhyZly82qBojNjGc1qtKmDTN5-srfEGFNkqFoyw=w526-h296" alt="Cubadebate app screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Android</span>
+          <div class="proj-title">Cubadebate</div>
+          <p class="proj-desc">News app for Cuba's leading digital media outlet — fast browsing, advanced search, offline-friendly reading and social sharing, built while leading the DESOFT mobile team.</p>
+          <div class="proj-tags"><span class="proj-tag">Android</span><span class="proj-tag">Kotlin/Java</span></div>
+          <a class="proj-link" href="https://play.google.com/store/apps/details?id=cu.avangenio.cubadebate" target="_blank" rel="noopener">View on Google Play →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://images.sftcdn.net/images/t_app-cover-s,f_auto/p/8a361d32-2454-4865-87b9-3c301adbb46c/1519502840/tvcubana-screenshot" alt="TVCubana app screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Android</span>
+          <div class="proj-title">Cartelera de la TV Cubana</div>
+          <p class="proj-desc">A TV listings guide for Cuban television — browse schedules and channels by day, so viewers never miss a program.</p>
+          <div class="proj-tags"><span class="proj-tag">Android</span><span class="proj-tag">Java</span></div>
+          <a class="proj-link" href="https://play.google.com/store/apps/details?id=cu.isla.tvcubana" target="_blank" rel="noopener">View app →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://play-lh.googleusercontent.com/m0BM0sOIdv8RuMlfa1w0Fc4_vSoIYBFXqE1DbhgsFOAA9w501qGknc512lDZ-XCEtChBpNh8AU7SSMobsWW7z9s=w526-h296" alt="TruckBook app screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Android</span>
+          <div class="proj-title">TruckBook</div>
+          <p class="proj-desc">Logistics app built for ItsTECH (Houston) to capture and analyze truck and trailer trip data for owner-operators on the road.</p>
+          <div class="proj-tags"><span class="proj-tag">Android</span><span class="proj-tag">Kotlin</span></div>
+          <a class="proj-link" href="https://play.google.com/store/apps/details?id=com.truckbooksapp" target="_blank" rel="noopener">View on Google Play →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://play-lh.googleusercontent.com/jXkonCpLWP-D6uQyHHDyO-STrXrTYGG_jzaLwfEbQHoIqoccPQT8ESj81nQSWafWJmjqdNklPyL_DNDF92SMQA4=w526-h296" alt="Flourish 360 app screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Flutter</span>
+          <div class="proj-title">Flourish 360</div>
+          <p class="proj-desc">A personal-growth app built for IsuCorp (Toronto), organizing six "Vital Life Domains" and guided activators into a daily self-development system.</p>
+          <div class="proj-tags"><span class="proj-tag">Flutter</span><span class="proj-tag">Dart</span></div>
+          <a class="proj-link" href="https://play.google.com/store/apps/details?id=com.flourish360.flourishapp" target="_blank" rel="noopener">View on Google Play →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://play-lh.googleusercontent.com/Wazz6ti9Me61lm17Mc7tz9_bnOdX7cAbwlLPqgkikr8W6qk-iwLGfyc99W3tF0dckcvlS_EOqheK7TypACa_=w526-h296" alt="Cubamax app screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Android</span>
+          <div class="proj-title">Cubamax</div>
+          <p class="proj-desc">Travel and shipping app connecting Cuban families abroad with services on the island — trip planning, packages and support in one place.</p>
+          <div class="proj-tags"><span class="proj-tag">Android</span></div>
+          <a class="proj-link" href="https://play.google.com/store/apps/details?id=com.exactity.android.cubamax" target="_blank" rel="noopener">View on Google Play →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://cubamax.com/shopping-section.webp" alt="Cubamax website screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Web</span>
+          <div class="proj-title">Cubamax.com</div>
+          <p class="proj-desc">The web platform behind the Cubamax travel and remittance business — trip booking, an online shop, and a raffle section, all in a bilingual (ES/EN) experience.</p>
+          <div class="proj-tags"><span class="proj-tag">React</span><span class="proj-tag">Next.js</span></div>
+          <a class="proj-link" href="https://cubamax.com/es" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://yadlconstruction.com/images/works/5dad6cf2-af41-491c-a322-38af7b4eb5f2.JPG" alt="YADL Construction website screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Web</span>
+          <div class="proj-title">YADL Construction</div>
+          <p class="proj-desc">Marketing site for a licensed Florida home renovation contractor — kitchen, bathroom and full home remodels, bilingual English/Spanish, built to turn visitors into estimate requests.</p>
+          <div class="proj-tags"><span class="proj-tag">React</span><span class="proj-tag">UI/UX</span></div>
+          <a class="proj-link" href="https://yadlconstruction.com/" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img-wrap">
+          <img src="https://play-lh.googleusercontent.com/pHEL6pb_JCQi6NW-i6dNJle9yiqZgGOzaRuzktO6rWdqPx6xhmkD8eTHohcaKwIqbaEzJeUfT0sb8e0woK3YPA=w526-h296" alt="TropiPay product screenshot">
+        </div>
+        <div class="proj-body">
+          <span class="proj-plat">Web</span>
+          <div class="proj-title">TropiPay</div>
+          <p class="proj-desc">Contributed to the digital wallet platform used across Cuba and the Caribbean for transfers, card payments and QR-based checkout, backed by a European payment license.</p>
+          <div class="proj-tags"><span class="proj-tag">JavaScript</span><span class="proj-tag">Fintech</span></div>
+          <a class="proj-link" href="https://www.tropipay.com/" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="contact" class="wrap contact">
+    <div class="contact-grid">
+      <div class="contact-big">Building something for <em>mobile</em>? Let's talk.</div>
+      <div class="contact-links">
+        <a href="mailto:apierraf88@gmail.com">apierraf88@gmail.com</a>
+        <a href="tel:+5354196775">+53 5419 6775</a>
+        <a href="https://www.linkedin.com/in/adrian-pierra-fuentes/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/apierraf" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Adrian Pierra Fuentes — Mobile &amp; Web Engineer</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.tab').forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
